@@ -410,7 +410,7 @@ l60 24 3 780 2 780 38 10 c20 6 123 30 227 55 105 24 323 77 485 116 162 40
 
                 </li>
                                     <li class="single-link js-nav-menu" id="c-uhf-nav-cta">
-                        <a  class="c-uhf-nav-link live" href="https://dotnet.microsoft.com/en-us/live" title="On .NET Live: Supercharge .NET with IAsyncEnumerables: Efficient Data Streams" data-m='{"cN":"CatNav_cta_LIVE TV_nav","id":"n12c8c3m1r1a1","sN":12,"aN":"c8c3m1r1a1"}'><svg class="circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048" width="32" height="32"><path d ="M32 1024q0-137 35-264t100-237 155-200 201-155T760 68t264-36q137 0 264 35t237 100 200 155 155 201 100 237 36 264q0 137-35 264t-100 237-155 200-201 155-237 100-264 36q-137 0-264-35t-237-100-200-155-155-201-100-237-36-264z" /></svg>LIVE TV</a>
+                        <a  class="c-uhf-nav-link not-live" href="https://dotnet.microsoft.com/en-us/live" data-m='{"cN":"CatNav_cta_LIVE TV_nav","id":"n12c8c3m1r1a1","sN":12,"aN":"c8c3m1r1a1"}'>LIVE TV</a>
                     </li>
             </ul>
             

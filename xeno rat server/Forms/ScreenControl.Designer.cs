@@ -100,40 +100,52 @@ namespace xeno_rat_server.Forms
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 4;
-            this.button2.Text = "Start";
+            this.button2.Text = "Disconnect";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button3.Location = new System.Drawing.Point(119, 607);
+            this.button3.Location = new System.Drawing.Point(93, 607);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 5;
-            this.button3.Text = "Stop";
+            this.button3.Text = "Connect";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // label1
+            // buttonFreeze
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(605, 612);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(89, 13);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Keyboard/Mouse";
+            this.buttonFreeze.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonFreeze.Location = new System.Drawing.Point(174, 607);
+            this.buttonFreeze.Name = "buttonFreeze";
+            this.buttonFreeze.Size = new System.Drawing.Size(75, 23);
+            this.buttonFreeze.TabIndex = 6;
+            this.buttonFreeze.Text = "Freeze";
+            this.buttonFreeze.UseVisualStyleBackColor = true;
+            this.buttonFreeze.Click += new System.EventHandler(this.buttonFreeze_Click);
+            // 
+            // buttonUnfreeze
+            // 
+            this.buttonUnfreeze.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonUnfreeze.Location = new System.Drawing.Point(255, 607);
+            this.buttonUnfreeze.Name = "buttonUnfreeze";
+            this.buttonUnfreeze.Size = new System.Drawing.Size(75, 23);
+            this.buttonUnfreeze.TabIndex = 7;
+            this.buttonUnfreeze.Text = "Unfreeze";
+            this.buttonUnfreeze.UseVisualStyleBackColor = true;
+            this.buttonUnfreeze.Click += new System.EventHandler(this.buttonUnfreeze_Click);
             // 
             // checkBox1
             // 
             this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(700, 612);
+            this.checkBox1.Location = new System.Drawing.Point(591, 611);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(67, 17);
-            this.checkBox1.TabIndex = 7;
-            this.checkBox1.Text = "Disabled";
+            this.checkBox1.Size = new System.Drawing.Size(62, 17);
+            this.checkBox1.TabIndex = 8;
+            this.checkBox1.Text = "Control";
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
@@ -141,22 +153,21 @@ namespace xeno_rat_server.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1170, 640);
+            this.ClientSize = new System.Drawing.Size(1170, 641);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.buttonUnfreeze);
+            this.Controls.Add(this.buttonFreeze);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.pictureBox1);
-            this.KeyPreview = true;
             this.Name = "ScreenControl";
             this.Text = "ScreenControl";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ScreenControl_FormClosing);
             this.Load += new System.EventHandler(this.ScreenControl_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ScreenControl_KeyDown);
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ScreenControl_KeyPress);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ScreenControl_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

