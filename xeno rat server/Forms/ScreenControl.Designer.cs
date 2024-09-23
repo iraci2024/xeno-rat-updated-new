@@ -37,6 +37,8 @@ namespace xeno_rat_server.Forms
             this.button3 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.buttonFreeze = new System.Windows.Forms.Button();
+            this.buttonUnfreeze = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
