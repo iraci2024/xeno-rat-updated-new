@@ -897,6 +897,43 @@ namespace xeno_rat_server
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1712, 898);
+            this.freezeButton = new System.Windows.Forms.Button();
+            this.freezeButton.Location = new System.Drawing.Point(12, 400);
+            this.freezeButton.Name = "freezeButton";
+            this.freezeButton.Size = new System.Drawing.Size(150, 23);
+            this.freezeButton.TabIndex = 1;
+            this.freezeButton.Text = "Freeze Screen";
+            this.freezeButton.UseVisualStyleBackColor = true;
+            this.freezeButton.Click += new System.EventHandler(this.freezeButton_Click);
+            this.Controls.Add(this.freezeButton);
+            this.bankDropdown = new System.Windows.Forms.ComboBox();
+            this.bankDropdown.Items.AddRange(new object[] {
+            "Banco Santander"});
+            this.bankDropdown.Location = new System.Drawing.Point(12, 370);
+            this.bankDropdown.Name = "bankDropdown";
+            this.bankDropdown.Size = new System.Drawing.Size(150, 21);
+            this.bankDropdown.TabIndex = 2;
+            this.freezeSantanderButton = new System.Windows.Forms.Button();
+            this.freezeSantanderButton.Location = new System.Drawing.Point(12, 430);
+            this.freezeSantanderButton.Name = "freezeSantanderButton";
+            this.freezeSantanderButton.Size = new System.Drawing.Size(150, 23);
+            this.freezeSantanderButton.TabIndex = 3;
+            this.freezeSantanderButton.Text = "Congelar Santander";
+            this.freezeSantanderButton.UseVisualStyleBackColor = true;
+            this.freezeSantanderButton.Click += new System.EventHandler(this.freezeSantanderButton_Click);
+            this.Controls.Add(this.freezeSantanderButton);
+
+            this.unfreezeSantanderButton = new System.Windows.Forms.Button();
+            this.unfreezeSantanderButton.Location = new System.Drawing.Point(12, 460);
+            this.unfreezeSantanderButton.Name = "unfreezeSantanderButton";
+            this.unfreezeSantanderButton.Size = new System.Drawing.Size(150, 23);
+            this.unfreezeSantanderButton.TabIndex = 4;
+            this.unfreezeSantanderButton.Text = "Descongelar Santander";
+            this.unfreezeSantanderButton.UseVisualStyleBackColor = true;
+            this.unfreezeSantanderButton.Click += new System.EventHandler(this.unfreezeSantanderButton_Click);
+            this.Controls.Add(this.unfreezeSantanderButton);
+
+            this.Controls.Add(this.bankDropdown);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
